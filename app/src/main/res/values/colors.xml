@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF85B6F0</color>
+
+
+    <color name="white_color">#FFFFFF</color>
+    <color name="black_color">#000000</color>
+    <color name="secondary_color">#EFF4F8</color>
+    <color name="focus">#FF85B6F0</color>
+    <color name="focus_transparent">#8085b6f0</color>
+    <color name="transparent">#75ffffff</color>
+    <color name="transparent2">#ab1b1b1b</color>
+    <color name="transparent3">#001b1b1b</color>
+    <color name="transparent4">#65ffffff</color>
+    <color name="transparent5">#44a19a9a</color>
+    <color name="transparentFull">#00000000</color>
+
+    <color name="red">#e71010</color>
+    <color name="red_transparent">#73e71010</color>
+
+    <color name="orange">#c75310</color>
+
+    <color name="dark_gray">#141414</color>
+    <color name="medium_gray">#363636</color>
+
+    <color name="gray">#717171</color>
+    <color name="gray_light">#b9b9b9</color>
+    <color name="gray_light_ultra">#e2e2e2</color>
+    <color name="light_gray">#FFCCCCCC</color>
+    <color name="light_gray_ultra">#dedede</color>
+    <color name="background_lists">#c9c8c8</color>
+    <color name="green">#a6249317</color>
+
+    <color name="blue1">#61A6F6</color>
+    <color name="blue2">#4A90E2</color>
+    <color name="blue3">#3174C4</color>
+    <color name="blue4">#4589DB</color>
+    <color name="colorTextGray">#FF767676</color>
+
+    <color name="status_green">#9a5e991d</color>
+    <color name="status_orange">#9ae97210</color>
+    <color name="status_grey">#9a727272</color>
+    <color name="status_red">#9adb172f</color>
+    <color name="status_blue">#9a327fd9</color>
+    <color name="status_black">#9a0a0a0a</color>
+
+
+
+    <color name="cornflower_blue">#6274e2</color>
+    <color name="cornflower_blue_dark">#303F9F</color>
+    <color name="cornflower_blue_darkest">#2d3a93</color>
+    <color name="gray_transparent">#a6efefef</color>
+    <color name="gray_dark">#858585</color>
+    <color name="gray_dark_transparent">#ae858585</color>
+    <color name="gray_darkest">#ae282828</color>
+    <color name="black">#000000</color>
+    <color name="black_10">#19000000</color>
+    <color name="ivory">#f8efe6</color>
+    <color name="ivory_dark">#f7e8d9</color>
+    <color name="green_dark">#2da346</color>
+    <color name="brown">#4e342e</color>
+
+    <color name="error_red">#E0293F</color>
+</resources>
