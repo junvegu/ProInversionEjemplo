@@ -30,7 +30,7 @@
         </activity>
 
         <activity
-            android:name=".ActivityListContacts">
+            android:name=".contacts.ActivityListContacts">
         </activity>
 
     </application>

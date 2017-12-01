@@ -1,4 +1,4 @@
-package com.cjava.example;
+package com.cjava.example.contacts;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -6,6 +6,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+
+import com.cjava.example.R;
+import com.cjava.example.contacts.adapter.ContactsAdapter;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

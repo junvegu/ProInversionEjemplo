@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.cjava.example.contacts.ActivityListContacts;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

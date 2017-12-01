@@ -1,4 +1,4 @@
-package com.cjava.example;
+package com.cjava.example.contacts;
 
 import java.io.Serializable;
 import java.util.ArrayList;

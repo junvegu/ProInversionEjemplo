@@ -1,15 +1,20 @@
-package com.cjava.example;
+package com.cjava.example.contacts.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.cjava.example.R;
+import com.cjava.example.contacts.ContacsEntity;
 
 import java.util.ArrayList;
 
@@ -20,7 +25,7 @@ import butterknife.ButterKnife;
  * Created by junior on 30/11/17.
  */
 
-public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.ViewHolder> {
+public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.ViewHolder> implements  OnClickContactListener {
 
 
     private ArrayList<ContacsEntity> mListContacts;
@@ -36,7 +41,7 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.ViewHo
     @Override
     public ContactsAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View root = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_contact, parent, false);
-        return new ViewHolder(root);
+        return new ViewHolder(root,this);
     }
 
     @Override
@@ -59,7 +64,14 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.ViewHo
         return mListContacts.size();
     }
 
-    static class ViewHolder extends RecyclerView.ViewHolder {
+    @Override
+    public void clickContact(int position) {
+
+        Log.d("ADAPTER","click al elemento " +position);
+        Log.e("ADAPTER","click al elemento " +position);
+    }
+
+    static class ViewHolder extends RecyclerView.ViewHolder  implements View.OnClickListener{
 
         @BindView(R.id.iv_picture)
         ImageView ivPicture;
@@ -70,13 +82,24 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.ViewHo
         @BindView(R.id.tv_phone)
         TextView tvPhone;
 
+        @BindView(R.id.item_click)
+        LinearLayout itemClickContact;
 
-        ViewHolder(View itemView) {
+
+        OnClickContactListener onClickContactListener;
+
+        ViewHolder(View itemView, OnClickContactListener onClickContactListener) {
             super(itemView);
-            ButterKnife.bind(this, itemView);
+            ButterKnife.bind(this, itemView );
+            this.onClickContactListener =  onClickContactListener;
+            itemClickContact.setOnClickListener(this);
 
         }
 
+        @Override
+        public void onClick(View view) {
+            onClickContactListener.clickContact(getAdapterPosition());
+        }
     }
 
 }
