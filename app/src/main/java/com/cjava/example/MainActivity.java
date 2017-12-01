@@ -93,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn_login:
-                Intent intent = new Intent(this, SecondActivity.class);
+                Intent intent = new Intent(this, ActivityListContacts.class);
                 startActivity(intent);
 
                 break;

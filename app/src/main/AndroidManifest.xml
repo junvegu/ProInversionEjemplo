@@ -29,7 +29,9 @@
             android:name=".SecondActivity">
         </activity>
 
-
+        <activity
+            android:name=".ActivityListContacts">
+        </activity>
 
     </application>
 
