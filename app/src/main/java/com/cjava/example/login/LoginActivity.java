@@ -1,5 +1,6 @@
 package com.cjava.example.login;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -11,6 +12,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.cjava.example.R;
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
@@ -54,6 +57,7 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
     private CallbackManager mCallbackManager;
     private LoginContract.Presenter mPresenter;
 
+    private ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -61,6 +65,9 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
         setContentView(R.layout.second_view);
         ButterKnife.bind(this);
 
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setTitle("Cargando ...");
+        progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
 
         if (AccessToken.getCurrentAccessToken() != null) {
 
@@ -78,8 +85,8 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
                     @Override
                     public void onSuccess(LoginResult loginResult) {
 
-                        Toast.makeText(LoginActivity.this, loginResult.getAccessToken().getToken(), Toast.LENGTH_SHORT).show();
 
+                        mPresenter.loginFacebook(loginResult.getAccessToken().getToken());
                     }
 
                     @Override
@@ -125,6 +132,13 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
     @Override
     public void setLoadingIndicator(boolean active) {
 
+        if (active) {
+            progressDialog.show();
+        } else {
+            if (progressDialog.isShowing()) {
+                progressDialog.dismiss();
+            }
+        }
     }
 
     @Override
@@ -134,12 +148,15 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
 
     @Override
     public void showErrorMessage(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
 
     }
 
     @Override
     public void loginSuccess(UserModel userModel) {
 
-        Toast.makeText(this, "Hola" + userModel.getFirst_name() + " " + userModel.getLast_name(), Toast.LENGTH_SHORT).show();
+        etEmail.setText(userModel.getEmail());
+        Glide.with(this).load(userModel.getPicture().getData().getUrl()).apply(RequestOptions.circleCropTransform())
+                .into(ivLogo);
     }
 }

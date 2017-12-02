@@ -1,18 +1,25 @@
 package com.cjava.example.login;
 
+import java.io.Serializable;
+
 /**
  * Created by junior on 01/12/17.
  */
 
-public class UserModel {
+public class UserModel implements Serializable{
 
 
 
 
+    private String id;
     private String email;
     private String first_name;
     private String last_name;
-    private String picture;
+    private PictureModel picture;
+    private String gender;
+
+
+
 
 
     public UserModel(String first_name, String last_name) {
@@ -45,11 +52,11 @@ public class UserModel {
         this.last_name = last_name;
     }
 
-    public String getPicture() {
+    public PictureModel getPicture() {
         return picture;
     }
 
-    public void setPicture(String picture) {
+    public void setPicture(PictureModel picture) {
         this.picture = picture;
     }
 }
