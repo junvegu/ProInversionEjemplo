@@ -9,6 +9,7 @@
 
     <string name="facebook_app_id">883629048471315</string>
     <string name="fb_login_protocol_scheme">fb883629048471315</string>
+    <string name="pick_image_intent_text">Seleccione Imagen</string>
 
 
 </resources>
