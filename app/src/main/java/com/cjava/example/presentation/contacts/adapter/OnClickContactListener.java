@@ -1,6 +1,4 @@
-package com.cjava.example.contacts.adapter;
-
-import com.cjava.example.contacts.ContacsEntity;
+package com.cjava.example.presentation.contacts.adapter;
 
 /**
  * Created by junior on 30/11/17.

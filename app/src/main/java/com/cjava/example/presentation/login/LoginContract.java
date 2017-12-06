@@ -1,7 +1,8 @@
-package com.cjava.example.login;
+package com.cjava.example.presentation.login;
 
 import com.cjava.example.base.BasePresenter;
 import com.cjava.example.base.BaseView;
+import com.cjava.example.model.UserModel;
 
 /**
  * Created by junior on 01/12/17.

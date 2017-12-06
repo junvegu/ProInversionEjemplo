@@ -1,4 +1,4 @@
-package com.cjava.example.contacts.adapter;
+package com.cjava.example.presentation.contacts.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -9,12 +9,11 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.cjava.example.R;
-import com.cjava.example.contacts.ContacsEntity;
+import com.cjava.example.model.ContacsModel;
 
 import java.util.ArrayList;
 
@@ -28,11 +27,11 @@ import butterknife.ButterKnife;
 public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.ViewHolder> implements  OnClickContactListener {
 
 
-    private ArrayList<ContacsEntity> mListContacts;
+    private ArrayList<ContacsModel> mListContacts;
     private Context mContext;
 
 
-    public ContactsAdapter(ArrayList<ContacsEntity> mListContacts, Context mContext) {
+    public ContactsAdapter(ArrayList<ContacsModel> mListContacts, Context mContext) {
         this.mListContacts = mListContacts;
         this.mContext = mContext;
     }
@@ -47,13 +46,13 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.ViewHo
     @Override
     public void onBindViewHolder(ContactsAdapter.ViewHolder holder, int position) {
 
-        ContacsEntity contacsEntity = mListContacts.get(position);
+        ContacsModel contacsModel = mListContacts.get(position);
 
 
-        holder.tvFullName.setText(contacsEntity.getFullName());
-        holder.tvCompany.setText(contacsEntity.getCompany_name());
-        holder.tvPhone.setText(contacsEntity.getPhone());
-        Glide.with(mContext).load(contacsEntity.getUrl_picture()).apply(RequestOptions.circleCropTransform()).into(holder.ivPicture);
+        holder.tvFullName.setText(contacsModel.getFullName());
+        holder.tvCompany.setText(contacsModel.getCompany_name());
+        holder.tvPhone.setText(contacsModel.getPhone());
+        Glide.with(mContext).load(contacsModel.getUrl_picture()).apply(RequestOptions.circleCropTransform()).into(holder.ivPicture);
 
       /*  Glide.with(mContext).load("http://www.spiritanimal.info/pictures/hawk/Hawk-Spirit-Animal-5.jpg").apply(RequestOptions.circleCropTransform())
                 .into(holder.ivPicture);*/

@@ -1,4 +1,4 @@
-package com.cjava.example.base;
+package com.cjava.example.data.remote;
 
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;

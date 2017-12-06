@@ -1,12 +1,12 @@
-package com.cjava.example.login;
+package com.cjava.example.presentation.login;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
-import android.util.Log;
 
-import com.cjava.example.base.ServiceFactory;
-import com.facebook.AccessToken;
-import com.facebook.login.Login;
+import com.cjava.example.data.local.SessionManager;
+import com.cjava.example.data.remote.ServiceFactory;
+import com.cjava.example.data.remote.LoginRequest;
+import com.cjava.example.model.UserModel;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -21,12 +21,15 @@ public class LoginController implements LoginContract.Presenter {
 
 
     private LoginContract.View mView;
+    private SessionManager sessionManager;
+
     private Context mContext;
 
     public LoginController(LoginContract.View mView, Context mContext) {
         this.mView = mView;
         this.mContext = mContext;
         this.mView.setPresenter(this);
+        this.sessionManager =  new SessionManager(mContext);
     }
 
     @Override
@@ -71,7 +74,9 @@ public class LoginController implements LoginContract.Presenter {
                 if (response.isSuccessful()){
                     // 200,2001,204 ....
 
+                    sessionManager.openSession(response.body());
                     mView.loginSuccess(response.body());
+
 
                 }else{
                     //404,401

@@ -1,4 +1,4 @@
-package com.cjava.example.login;
+package com.cjava.example.model;
 
 /**
  * Created by junior on 01/12/17.

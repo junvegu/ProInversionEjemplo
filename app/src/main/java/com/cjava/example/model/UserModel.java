@@ -1,4 +1,4 @@
-package com.cjava.example.login;
+package com.cjava.example.model;
 
 import java.io.Serializable;
 
@@ -8,18 +8,12 @@ import java.io.Serializable;
 
 public class UserModel implements Serializable{
 
-
-
-
     private String id;
     private String email;
     private String first_name;
     private String last_name;
     private PictureModel picture;
     private String gender;
-
-
-
 
 
     public UserModel(String first_name, String last_name) {
@@ -58,5 +52,21 @@ public class UserModel implements Serializable{
 
     public void setPicture(PictureModel picture) {
         this.picture = picture;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 }

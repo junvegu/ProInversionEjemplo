@@ -1,4 +1,6 @@
-package com.cjava.example.login;
+package com.cjava.example.data.remote;
+
+import com.cjava.example.model.UserModel;
 
 import retrofit2.Call;
 import retrofit2.http.GET;

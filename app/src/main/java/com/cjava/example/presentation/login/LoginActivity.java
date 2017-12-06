@@ -1,4 +1,4 @@
-package com.cjava.example.login;
+package com.cjava.example.presentation.login;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -12,9 +12,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.RequestOptions;
 import com.cjava.example.R;
+import com.cjava.example.presentation.contacts.ActivityListContacts;
+import com.cjava.example.model.UserModel;
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
@@ -155,8 +155,13 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
     @Override
     public void loginSuccess(UserModel userModel) {
 
-        etEmail.setText(userModel.getEmail());
+        Intent intent =  new Intent(this, ActivityListContacts.class);
+        startActivity(intent);
+        finish();
+
+
+        /*etEmail.setText(userModel.getEmail());
         Glide.with(this).load(userModel.getPicture().getData().getUrl()).apply(RequestOptions.circleCropTransform())
-                .into(ivLogo);
+                .into(ivLogo);*/
     }
 }
