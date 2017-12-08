@@ -13,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.cjava.example.R;
+import com.cjava.example.presentation.MapActivity;
 import com.cjava.example.presentation.contacts.ActivityListContacts;
 import com.cjava.example.model.UserModel;
 import com.facebook.AccessToken;
@@ -155,7 +156,7 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
     @Override
     public void loginSuccess(UserModel userModel) {
 
-        Intent intent =  new Intent(this, ActivityListContacts.class);
+        Intent intent =  new Intent(this, MapActivity.class);
         startActivity(intent);
         finish();
 
