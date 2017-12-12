@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+
+
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:titleTextColor="@color/black"
+            android:background="?attr/colorPrimary"
+            android:minHeight="?attr/actionBarSize">
+
+
+        </android.support.v7.widget.Toolbar>
+
+    </android.support.design.widget.AppBarLayout>
+
+
+
+
+
+
+    <LinearLayout
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:layout_margin="20dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <EditText
+                android:maxLength="50"
+                android:inputType="textCapWords"
+                android:maxLines="1"
+                android:id="@+id/et_fullname"
+                android:textSize="15dp"
+                android:hint="Nombres"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </android.support.design.widget.TextInputLayout>
+
+
+
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            app:counterMaxLength="50"
+            app:counterEnabled="true"
+
+            android:layout_height="wrap_content" >
+            <EditText
+
+                android:maxLength="50"
+                android:inputType="textCapWords"
+                android:maxLines="1"
+                android:id="@+id/et_company"
+                android:textSize="15dp"
+                android:hint="Empresa"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </android.support.design.widget.TextInputLayout>
+
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+            <EditText
+                android:maxLines="1"
+                android:inputType="phone"
+                android:id="@+id/et_phone"
+                android:textSize="15dp"
+                android:hint="Número"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </android.support.design.widget.TextInputLayout>
+
+
+
+
+        <Button
+            android:id="@+id/btn_add_contact"
+            android:layout_marginTop="20dp"
+            android:textColor="@color/white_color"
+            android:background="@drawable/button_primary"
+            android:text="agregar"
+            android:layout_width="match_parent"
+            android:layout_height="40dp" />
+
+    </LinearLayout>
+
+</android.support.design.widget.CoordinatorLayout>

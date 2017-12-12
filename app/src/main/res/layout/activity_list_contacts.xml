@@ -35,6 +35,7 @@
         android:layout_height="match_parent">
 
         <ImageView
+            android:visibility="gone"
             android:id="@+id/image"
             android:layout_gravity="center"
             android:src="@drawable/background"
@@ -43,6 +44,7 @@
 
 
         <Button
+            android:visibility="gone"
             android:id="@+id/btn_select_image"
             android:layout_margin="10dp"
             android:text="Seleccionar Imagen"
@@ -53,13 +55,30 @@
             android:layout_height="40dp" />
         <android.support.v7.widget.RecyclerView
 
-            android:visibility="gone"
+            android:visibility="visible"
             android:id="@+id/rv_contacts"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
         </android.support.v7.widget.RecyclerView>
+
+
+
+        <FrameLayout
+            android:layout_margin="10dp"
+            android:layout_gravity="bottom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/fab_add_contact"
+                android:src="@drawable/ic_alarm"
+                android:layout_gravity="end"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </FrameLayout>
     </FrameLayout>
+
 
 
 

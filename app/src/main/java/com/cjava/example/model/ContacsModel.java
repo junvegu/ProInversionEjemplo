@@ -42,7 +42,11 @@ public class ContacsModel implements Serializable {
 
     }
 
-
+    public ContacsModel(String first_name, String company_name, String phone) {
+        this.first_name = first_name;
+        this.company_name = company_name;
+        this.phone = phone;
+    }
 
     public String getFirst_name() {
         return first_name;

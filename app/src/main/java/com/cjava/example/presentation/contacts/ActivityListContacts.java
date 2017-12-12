@@ -5,15 +5,16 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.cjava.example.R;
 import com.cjava.example.data.local.SessionManager;
@@ -21,6 +22,8 @@ import com.cjava.example.model.ContacsModel;
 import com.cjava.example.presentation.contacts.adapter.ContactsAdapter;
 import com.cjava.example.presentation.login.LoginActivity;
 import com.cjava.example.utils.ImagePicker;
+
+import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -41,6 +44,8 @@ public class ActivityListContacts extends AppCompatActivity {
     ImageView image;
     @BindView(R.id.btn_select_image)
     Button btnSelectImage;
+    @BindView(R.id.fab_add_contact)
+    FloatingActionButton fabButton;
 
     private static final int PICK_IMAGE_ID = 1234;
 
@@ -69,7 +74,9 @@ public class ActivityListContacts extends AppCompatActivity {
 
         sessionManager = new SessionManager(this);
 
-        mContactsAdapter = new ContactsAdapter(ContacsModel.contacsEntities(), this);
+
+        //Inicializa la data
+        mContactsAdapter = new ContactsAdapter(new ArrayList<ContacsModel>(), this);
         mLinearLayoutManager = new LinearLayoutManager(this);
         mGridLayoutManager = new GridLayoutManager(this, 2);
 
@@ -101,6 +108,8 @@ public class ActivityListContacts extends AppCompatActivity {
     }
 
 
+    //Espera llamadas de resultados de otras actividades y las filtra por código
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -109,8 +118,16 @@ public class ActivityListContacts extends AppCompatActivity {
             switch (requestCode) {
                 case PICK_IMAGE_ID:
 
-                            Bitmap bitmap1 = ImagePicker.getImageFromResult(this, resultCode, data);
-                            image.setImageBitmap(bitmap1);
+                    Bitmap bitmap1 = ImagePicker.getImageFromResult(this, resultCode, data);
+                    image.setImageBitmap(bitmap1);
+
+                    break;
+                case 666:
+
+                    ContacsModel contacsModel = (ContacsModel) data.getSerializableExtra("contact");
+
+
+                    Toast.makeText(this, contacsModel.getFirst_name(), Toast.LENGTH_SHORT).show();
 
                     break;
                 default:
@@ -120,5 +137,13 @@ public class ActivityListContacts extends AppCompatActivity {
         }
 
 
+    }
+
+    @OnClick(R.id.fab_add_contact)
+    public void onViewClickedFab() {
+
+        Intent intent = new Intent(this, AddContactListActivity.class);
+        //Esperar resultado de la otra actividad
+        startActivityForResult(intent,666);
     }
 }

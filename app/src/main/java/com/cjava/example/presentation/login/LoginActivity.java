@@ -145,6 +145,7 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
     @Override
     public void showMessage(String message) {
 
+
     }
 
     @Override
@@ -156,7 +157,7 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
     @Override
     public void loginSuccess(UserModel userModel) {
 
-        Intent intent =  new Intent(this, MapActivity.class);
+        Intent intent =  new Intent(this, ActivityListContacts.class);
         startActivity(intent);
         finish();
 

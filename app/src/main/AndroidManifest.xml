@@ -25,7 +25,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:theme="@style/SplashTheme"
-            android:name=".presentation.MapActivity"
+            android:name=".presentation.login.SplashActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -39,6 +39,7 @@
 
         <activity android:name=".SecondActivity"></activity>
 
+        <activity android:name=".presentation.contacts.AddContactListActivity"></activity>
         <activity android:name=".presentation.contacts.ActivityListContacts"></activity>
         <activity android:name=".presentation.login.LoginActivity"></activity>
 
