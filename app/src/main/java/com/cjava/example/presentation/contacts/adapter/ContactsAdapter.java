@@ -70,6 +70,11 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.ViewHo
         Log.e("ADAPTER","click al elemento " +position);
     }
 
+    public void setItems(ArrayList<ContacsModel> items) {
+        this.mListContacts = items;
+        notifyDataSetChanged();
+    }
+
     static class ViewHolder extends RecyclerView.ViewHolder  implements View.OnClickListener{
 
         @BindView(R.id.iv_picture)

@@ -1,6 +1,8 @@
 package com.cjava.example.presentation.contacts;
 
 import android.app.Activity;
+import android.app.SearchManager;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
@@ -11,7 +13,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -33,7 +39,7 @@ import butterknife.OnClick;
  * Created by junior on 30/11/17.
  */
 
-public class ActivityListContacts extends AppCompatActivity {
+public class ActivityListContacts extends AppCompatActivity implements ContactsContract.View {
 
 
     @BindView(R.id.rv_contacts)
@@ -56,6 +62,16 @@ public class ActivityListContacts extends AppCompatActivity {
     private SessionManager sessionManager;
 
 
+    //Controlador
+    private ContactsContract.Presenter mPresenter;
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mPresenter.start();
+    }
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,6 +88,7 @@ public class ActivityListContacts extends AppCompatActivity {
         ab.setTitle("Lista de contactos");
 
 
+        mPresenter = new ContactsController(this,this);
         sessionManager = new SessionManager(this);
 
 
@@ -127,6 +144,8 @@ public class ActivityListContacts extends AppCompatActivity {
                     ContacsModel contacsModel = (ContacsModel) data.getSerializableExtra("contact");
 
 
+                    mPresenter.addContact(contacsModel);
+
                     Toast.makeText(this, contacsModel.getFirst_name(), Toast.LENGTH_SHORT).show();
 
                     break;
@@ -139,11 +158,95 @@ public class ActivityListContacts extends AppCompatActivity {
 
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.search, menu);
+
+        final MenuItem searchItem = menu.findItem(R.id.action_search);
+
+        SearchManager searchManager = (SearchManager) this.getSystemService(Context.SEARCH_SERVICE);
+
+        SearchView searchView = null;
+        if (searchItem != null) {
+            searchView = (SearchView) searchItem.getActionView();
+        }
+        if (searchView != null) {
+            searchView.setSearchableInfo(searchManager.getSearchableInfo(this.getComponentName()));
+            final SearchView finalSearchView = searchView;
+            searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+                @Override
+                public boolean onQueryTextSubmit(String query) {
+                    // Toast like print
+                    if( ! finalSearchView.isIconified()) {
+                        finalSearchView.setIconified(true);
+                    }
+                    searchItem.collapseActionView();
+                    return false;
+                }
+                @Override
+                public boolean onQueryTextChange(String s) {
+
+                    //ünicas lineas a remplazar
+                    if (s.length() > 0) {
+                        mPresenter.search(s.toUpperCase());
+                    } else {
+                        mPresenter.search("");
+                    }
+                    return false;
+                }
+            });
+        }
+        return super.onCreateOptionsMenu(menu);
+    }
+
     @OnClick(R.id.fab_add_contact)
     public void onViewClickedFab() {
 
         Intent intent = new Intent(this, AddContactListActivity.class);
         //Esperar resultado de la otra actividad
         startActivityForResult(intent,666);
+    }
+
+    @Override
+    public void setPresenter(ContactsContract.Presenter presenter) {
+
+        mPresenter =  presenter;
+    }
+
+    @Override
+    public void setLoadingIndicator(boolean active) {
+
+    }
+
+    @Override
+    public void showMessage(String message) {
+
+    }
+
+    @Override
+    public void showErrorMessage(String message) {
+
+    }
+
+    @Override
+    public void showContacts(ArrayList<ContacsModel> contacsModels) {
+
+        mContactsAdapter.setItems(contacsModels);
+    }
+
+    @Override
+    public void deleteItemSuccess(String id) {
+
+    }
+
+    @Override
+    public void addContactSuccess(ContacsModel contacsModel) {
+
+    }
+
+    @Override
+    public void updateContact(ContacsModel contacsModel) {
+
     }
 }

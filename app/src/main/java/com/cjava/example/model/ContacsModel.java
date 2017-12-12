@@ -3,19 +3,32 @@ package com.cjava.example.model;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import io.realm.RealmObject;
+import io.realm.annotations.Ignore;
+import io.realm.annotations.PrimaryKey;
+
 /**
  * Created by junior on 30/11/17.
  */
 
-public class ContacsModel implements Serializable {
+public class ContacsModel extends RealmObject implements Serializable, CloneableRealmObject<ContacsModel> {
 
+
+    @PrimaryKey
+    private String id;
     private String first_name;
+    @Ignore
     private String last_name;
     private String company_name;
     private String phone;
+    @Ignore
     private String url_picture;
 
 
+
+    public ContacsModel(){
+
+    }
     public ContacsModel(String first_name, String last_name, String company_name, String phone, String url_picture) {
         this.first_name = first_name;
         this.last_name = last_name;
@@ -42,10 +55,11 @@ public class ContacsModel implements Serializable {
 
     }
 
-    public ContacsModel(String first_name, String company_name, String phone) {
+    public ContacsModel(String id,String first_name, String company_name, String phone) {
         this.first_name = first_name;
         this.company_name = company_name;
         this.phone = phone;
+        this.id = id;
     }
 
     public String getFirst_name() {
@@ -89,6 +103,13 @@ public class ContacsModel implements Serializable {
     }
 
     public String getFullName() {
-        return first_name + " " + last_name;
+        return first_name ;
+    }
+
+    @Override
+    public ContacsModel cloneRealmObject() {
+        ContacsModel contacsModel =  new ContacsModel(this.id,this.first_name,this.company_name,this.phone);
+
+        return contacsModel;
     }
 }
